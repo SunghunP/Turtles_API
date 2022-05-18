@@ -1,7 +1,9 @@
 // Dependencies
+require("dotenv").config();
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const DATABASE_URL = process.env.DATABASE_URL;
 
 // Database of Turtles
 const turtles = [
@@ -22,6 +24,22 @@ const turtles = [
 // ---------------------- // 
 app.use(express.json());
 
+// Mongoose Config
+const mongoose = require("mongoose");
+const db = mongoose.connection;
+mongoose.connect(DATABASE_URL);
+
+// check for DB connection and errors
+db.on("connected", () => {
+	console.log("MongoDB Connected!")
+})
+db.on("disconnected", () => {
+	console.log("MongoDB Disconnected!")
+})
+db.on("error", (err) => {
+	console.log(err.message)
+})
+
 // Routes 
 app.get('/', (req, res) => {
   res.json({ response: `Ayoooo`});
@@ -38,13 +56,13 @@ app.get('/turtles/', (req, res) => {
 // Delete
 app.delete("/turtles/:id/", (req, res) => {
   turtles.splice(req.params.id, 1);
-  res.json(turtles)
+  res.json(turtles);
 });
 
 // Update
 app.put("/turtles/:id/", (req, res) => {
-  turtles[req.params.id] = req.body
-  res.json(turtles)
+  turtles[req.params.id] = req.body;
+  res.json(turtles);
 });
 
 // Create 
