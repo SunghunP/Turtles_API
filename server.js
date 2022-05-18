@@ -50,7 +50,8 @@ app.post('/turtles', (req, res) => {
 
 // Update
 app.put("/turtles/:id/", (req, res) => {
-  turtles[req.params.id] = req.body
+  turtles[req.params.id] = req.bodyl
+  res.json(turtles)
 });
 
 // Listener
