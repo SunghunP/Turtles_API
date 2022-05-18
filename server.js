@@ -35,6 +35,12 @@ app.get('/turtles/', (req, res) => {
   res.json(turtles);
 });
 
+// Delete
+app.delete("/turtles/:id/", (req, res) => {
+  turtles.splice(req.params.id, 1);
+  res.json(turtles)
+});
+
 // Update
 app.put("/turtles/:id/", (req, res) => {
   turtles[req.params.id] = req.body
