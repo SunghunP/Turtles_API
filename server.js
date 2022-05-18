@@ -19,14 +19,17 @@ const turtles = [
 
 // Routes 
 app.get('/', (req,res) => {
-  res.json({ response: `Ayoooo`})
+  res.json({ response: `Ayoooo`});
 });
 
 // INDUCES
+app.get('/turtles/', (req,res) => {
+  res.json(turtles);
+});
 
 // Listener
 app.listen(PORT, () => {
-  console.log(`We are running on port ${PORT}`)
+  console.log(`We are running on port ${PORT}`);
 });
 
 
