@@ -35,9 +35,10 @@ app.get('/turtles/', (req, res) => {
   res.json(turtles);
 });
 
-// Show
-app.get('/turtles/:id/', (req, res) => {
-  res.json(turtles[req.params.id]);
+// Update
+app.put("/turtles/:id/", (req, res) => {
+  turtles[req.params.id] = req.body
+  res.json(turtles)
 });
 
 // Create 
@@ -48,10 +49,9 @@ app.post('/turtles', (req, res) => {
   res.json(turtles);
 });
 
-// Update
-app.put("/turtles/:id/", (req, res) => {
-  turtles[req.params.id] = req.body
-  res.json(turtles)
+// Show
+app.get('/turtles/:id/', (req, res) => {
+  res.json(turtles[req.params.id]);
 });
 
 // Listener
