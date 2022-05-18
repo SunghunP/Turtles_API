@@ -27,6 +27,10 @@ app.get('/turtles/', (req,res) => {
   res.json(turtles);
 });
 
+app.get('/turtles/:id/', (req,res) => {
+  res.json(turtles[req.params.id]);
+});
+
 // Listener
 app.listen(PORT, () => {
   console.log(`We are running on port ${PORT}`);
