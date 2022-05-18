@@ -17,18 +17,35 @@ const turtles = [
   { name: "Squirtle", role: "1st Gen Starter"}
 ];
 
+// ---------------------- // 
+// Middleware
+// ---------------------- // 
+app.use(express.json());
+
 // Routes 
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
   res.json({ response: `Ayoooo`});
 });
 
+// ---------------------- // 
 // INDUCES
-app.get('/turtles/', (req,res) => {
+// ---------------------- // 
+// Index
+app.get('/turtles/', (req, res) => {
   res.json(turtles);
 });
 
-app.get('/turtles/:id/', (req,res) => {
+// Show
+app.get('/turtles/:id/', (req, res) => {
   res.json(turtles[req.params.id]);
+});
+
+// Create 
+app.post('/turtles', (req, res) => {
+  // add the turtle to the array
+  turtles.push(req.body);
+  // send the turtles object to show user the change
+  res.json(turtles);
 });
 
 // Listener
